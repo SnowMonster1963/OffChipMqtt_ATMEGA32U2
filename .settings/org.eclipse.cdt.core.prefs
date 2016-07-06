@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEOPTIONS/delimiter=;
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEOPTIONS/operation=replace
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEOPTIONS/value=-pm32u2
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEPATH/delimiter=;
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEPATH/operation=replace
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/AVRDUDEPATH/value=C\:\\WinAVR-20100110\\bin
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/append=true
+environment/project/de.innot.avreclipse.configuration.app.debug.2112783702/appendContributed=true
