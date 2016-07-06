@@ -11,13 +11,13 @@ C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(StackCh
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_mulhi3.o)
                               ./NeoPixels.o (__mulhi3)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodhi4.o)
-                              ./NeoPixelCandle.o (__udivmodhi4)
+                              ./NeoPixelTheaterChase.o (__udivmodhi4)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodhi4.o)
                               ./NeoPixelTheaterChase.o (__divmodhi4)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodsi4.o)
                               ./NeoPixels.o (__udivmodsi4)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o)
-                              ./NeoPixelCandle.o (__divmodsi4)
+                              ./NeoPixels.o (__divmodsi4)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_negsi2.o)
                               c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o) (__negsi2)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_exit.o)
@@ -596,7 +596,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2470
+.text           0x00000000     0x246a
  *(.vectors)
  .vectors       0x00000000       0x74 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35/crtatmega32u2.o
                 0x00000000                __vector_default
@@ -740,237 +740,237 @@ END GROUP
                 0x000001a6       0x1e ./NeoPixelCandle.o
                 0x000001a6                _ZN9NeoPixels10initCandleEv
  .text._ZN9NeoPixels12CandleEffectEv
-                0x000001c4      0x112 ./NeoPixelCandle.o
+                0x000001c4      0x10c ./NeoPixelCandle.o
                 0x000001c4                _ZN9NeoPixels12CandleEffectEv
  .text._ZN9NeoConfigC2Ev
-                0x000002d6       0xd2 ./NeoPixelConfig.o
-                0x000002d6                _ZN9NeoConfigC1Ev
-                0x000002d6                _ZN9NeoConfigC2Ev
+                0x000002d0       0xd2 ./NeoPixelConfig.o
+                0x000002d0                _ZN9NeoConfigC1Ev
+                0x000002d0                _ZN9NeoConfigC2Ev
  .text._ZN9NeoPixels16initTheaterChaseEv
-                0x000003a8       0x36 ./NeoPixelTheaterChase.o
-                0x000003a8                _ZN9NeoPixels16initTheaterChaseEv
+                0x000003a2       0x36 ./NeoPixelTheaterChase.o
+                0x000003a2                _ZN9NeoPixels16initTheaterChaseEv
  .text._ZN9NeoPixels18TheaterChaseEffectEv
-                0x000003de      0x1e2 ./NeoPixelTheaterChase.o
-                0x000003de                _ZN9NeoPixels18TheaterChaseEffectEv
+                0x000003d8      0x1e2 ./NeoPixelTheaterChase.o
+                0x000003d8                _ZN9NeoPixels18TheaterChaseEffectEv
  .text._Z12RandomOffsetj
-                0x000005c0       0x40 ./NeoPixels.o
-                0x000005c0                _Z12RandomOffsetj
+                0x000005ba       0x40 ./NeoPixels.o
+                0x000005ba                _Z12RandomOffsetj
  .text._Z9sendPixelhhh
-                0x00000600       0xba ./NeoPixels.o
-                0x00000600                _Z9sendPixelhhh
+                0x000005fa       0xba ./NeoPixels.o
+                0x000005fa                _Z9sendPixelhhh
  .text._Z9sendPixelR13NeoPixelColor
-                0x000006ba       0xda ./NeoPixels.o
-                0x000006ba                _Z9sendPixelR13NeoPixelColor
+                0x000006b4       0xda ./NeoPixels.o
+                0x000006b4                _Z9sendPixelR13NeoPixelColor
  .text._Z10sendPixelsP13NeoPixelColorj
-                0x00000794       0x4a ./NeoPixels.o
-                0x00000794                _Z10sendPixelsP13NeoPixelColorj
+                0x0000078e       0x4a ./NeoPixels.o
+                0x0000078e                _Z10sendPixelsP13NeoPixelColorj
  .text._Z5Wheelh
-                0x000007de       0xa0 ./NeoPixels.o
-                0x000007de                _Z5Wheelh
+                0x000007d8       0xa0 ./NeoPixels.o
+                0x000007d8                _Z5Wheelh
  .text._ZN9NeoPixelsC2Ej
-                0x0000087e       0x90 ./NeoPixels.o
-                0x0000087e                _ZN9NeoPixelsC1Ej
-                0x0000087e                _ZN9NeoPixelsC2Ej
+                0x00000878       0x90 ./NeoPixels.o
+                0x00000878                _ZN9NeoPixelsC1Ej
+                0x00000878                _ZN9NeoPixelsC2Ej
  .text._ZN9NeoPixels16StartRandomPixelEj
-                0x0000090e      0x164 ./NeoPixels.o
-                0x0000090e                _ZN9NeoPixels16StartRandomPixelEj
+                0x00000908      0x164 ./NeoPixels.o
+                0x00000908                _ZN9NeoPixels16StartRandomPixelEj
  .text._ZN9NeoPixels11initTwinkleEv
-                0x00000a72       0xd0 ./NeoPixels.o
-                0x00000a72                _ZN9NeoPixels11initTwinkleEv
+                0x00000a6c       0xd0 ./NeoPixels.o
+                0x00000a6c                _ZN9NeoPixels11initTwinkleEv
  .text._ZN13NeoPixelColorC2Ev
-                0x00000b42       0x1a ./NeoPixels.o
-                0x00000b42                _ZN13NeoPixelColorC2Ev
-                0x00000b42                _ZN13NeoPixelColorC1Ev
+                0x00000b3c       0x1a ./NeoPixels.o
+                0x00000b3c                _ZN13NeoPixelColorC2Ev
+                0x00000b3c                _ZN13NeoPixelColorC1Ev
  .text._ZN13NeoPixelColorC2Ehhh
-                0x00000b5c       0x1a ./NeoPixels.o
-                0x00000b5c                _ZN13NeoPixelColorC2Ehhh
-                0x00000b5c                _ZN13NeoPixelColorC1Ehhh
+                0x00000b56       0x1a ./NeoPixels.o
+                0x00000b56                _ZN13NeoPixelColorC2Ehhh
+                0x00000b56                _ZN13NeoPixelColorC1Ehhh
  .text._ZN13NeoPixelColorC2ERKS_
-                0x00000b76       0x34 ./NeoPixels.o
-                0x00000b76                _ZN13NeoPixelColorC2ERKS_
-                0x00000b76                _ZN13NeoPixelColorC1ERKS_
+                0x00000b70       0x34 ./NeoPixels.o
+                0x00000b70                _ZN13NeoPixelColorC2ERKS_
+                0x00000b70                _ZN13NeoPixelColorC1ERKS_
  .text._ZN13NeoPixelColoraSERKS_
-                0x00000baa       0x34 ./NeoPixels.o
-                0x00000baa                _ZN13NeoPixelColoraSERKS_
+                0x00000ba4       0x34 ./NeoPixels.o
+                0x00000ba4                _ZN13NeoPixelColoraSERKS_
  .text._ZN9NeoPixels10fillPixelsE13NeoPixelColor
-                0x00000bde       0x6e ./NeoPixels.o
-                0x00000bde                _ZN9NeoPixels10fillPixelsE13NeoPixelColor
+                0x00000bd8       0x6e ./NeoPixels.o
+                0x00000bd8                _ZN9NeoPixels10fillPixelsE13NeoPixelColor
  .text._ZN9NeoPixels4initEv
-                0x00000c4c      0x138 ./NeoPixels.o
-                0x00000c4c                _ZN9NeoPixels4initEv
+                0x00000c46      0x138 ./NeoPixels.o
+                0x00000c46                _ZN9NeoPixels4initEv
  .text._ZN9NeoPixels13RainbowEffectEv.part.2
-                0x00000d84       0xba ./NeoPixels.o
+                0x00000d7e       0xba ./NeoPixels.o
  .text._ZN9NeoPixels9SetConfigER9NeoConfig
-                0x00000e3e       0x88 ./NeoPixels.o
-                0x00000e3e                _ZN9NeoPixels9SetConfigER9NeoConfig
+                0x00000e38       0x88 ./NeoPixels.o
+                0x00000e38                _ZN9NeoPixels9SetConfigER9NeoConfig
  .text._ZN13NeoPixelColormlEh
-                0x00000ec6       0xb6 ./NeoPixels.o
-                0x00000ec6                _ZN13NeoPixelColormlEh
+                0x00000ec0       0xb6 ./NeoPixels.o
+                0x00000ec0                _ZN13NeoPixelColormlEh
  .text._ZN9NeoPixels19TwinkleSingleEffectEv
-                0x00000f7c      0x296 ./NeoPixels.o
-                0x00000f7c                _ZN9NeoPixels19TwinkleSingleEffectEv
+                0x00000f76      0x296 ./NeoPixels.o
+                0x00000f76                _ZN9NeoPixels19TwinkleSingleEffectEv
  .text._ZN9NeoPixels6UpdateEv
-                0x00001212       0xa8 ./NeoPixels.o
-                0x00001212                _ZN9NeoPixels6UpdateEv
+                0x0000120c       0xa8 ./NeoPixels.o
+                0x0000120c                _ZN9NeoPixels6UpdateEv
  .text._ZN9NeoPixels5beginEv
-                0x000012ba       0x1c ./NeoPixels.o
-                0x000012ba                _ZN9NeoPixels5beginEv
+                0x000012b4       0x1c ./NeoPixels.o
+                0x000012b4                _ZN9NeoPixels5beginEv
  .text._ZN9NeoPixels4TaskEv
-                0x000012d6       0x34 ./NeoPixels.o
-                0x000012d6                _ZN9NeoPixels4TaskEv
+                0x000012d0       0x34 ./NeoPixels.o
+                0x000012d0                _ZN9NeoPixels4TaskEv
  .text._ZN6MyMqttC2Ev
-                0x0000130a       0x2a ./OffChipMqtt.o
-                0x0000130a                _ZN6MyMqttC1Ev
-                0x0000130a                _ZN6MyMqttC2Ev
+                0x00001304       0x2a ./OffChipMqtt.o
+                0x00001304                _ZN6MyMqttC1Ev
+                0x00001304                _ZN6MyMqttC2Ev
  .text._ZN6MyMqtt9SetBufferEPcj
-                0x00001334       0x44 ./OffChipMqtt.o
-                0x00001334                _ZN6MyMqtt9SetBufferEPcj
+                0x0000132e       0x44 ./OffChipMqtt.o
+                0x0000132e                _ZN6MyMqtt9SetBufferEPcj
  .text._ZN6MyMqtt7OnTopicEPcS0_
-                0x00001378      0x2b8 ./OffChipMqtt.o
-                0x00001378                _ZN6MyMqtt7OnTopicEPcS0_
+                0x00001372      0x2b8 ./OffChipMqtt.o
+                0x00001372                _ZN6MyMqtt7OnTopicEPcS0_
  .text._ZN6MyMqtt11CheckUpdateEv
-                0x00001630       0x22 ./OffChipMqtt.o
-                0x00001630                _ZN6MyMqtt11CheckUpdateEv
+                0x0000162a       0x22 ./OffChipMqtt.o
+                0x0000162a                _ZN6MyMqtt11CheckUpdateEv
  .text._ZN6MyMqtt5beginEv
-                0x00001652      0x126 ./OffChipMqtt.o
-                0x00001652                _ZN6MyMqtt5beginEv
+                0x0000164c      0x126 ./OffChipMqtt.o
+                0x0000164c                _ZN6MyMqtt5beginEv
  .text._ZN6MyMqtt9MqttTasksEv
-                0x00001778      0x26e ./OffChipMqtt.o
-                0x00001778                _ZN6MyMqtt9MqttTasksEv
+                0x00001772      0x26e ./OffChipMqtt.o
+                0x00001772                _ZN6MyMqtt9MqttTasksEv
  .text._Z14checkSignatureb
-                0x000019e6       0x2a ./main.o
-                0x000019e6                _Z14checkSignatureb
+                0x000019e0       0x2a ./main.o
+                0x000019e0                _Z14checkSignatureb
  .text._Z10fillPixelshhhh
-                0x00001a10       0x48 ./main.o
-                0x00001a10                _Z10fillPixelshhhh
+                0x00001a0a       0x48 ./main.o
+                0x00001a0a                _Z10fillPixelshhhh
  .text._Z11flashPixelshhhhhj
-                0x00001a58       0x64 ./main.o
-                0x00001a58                _Z11flashPixelshhhhhj
+                0x00001a52       0x64 ./main.o
+                0x00001a52                _Z11flashPixelshhhhhj
  .text._Z9PixelTesth
-                0x00001abc       0xf2 ./main.o
-                0x00001abc                _Z9PixelTesth
+                0x00001ab6       0xf2 ./main.o
+                0x00001ab6                _Z9PixelTesth
  .text.startup.main
-                0x00001bae       0x50 ./main.o
-                0x00001bae                main
+                0x00001ba8       0x50 ./main.o
+                0x00001ba8                main
  .text.startup._GLOBAL__sub_I_StackSignature
-                0x00001bfe       0x12 ./main.o
+                0x00001bf8       0x12 ./main.o
  .text._ZN9HWSerial13getEv
-                0x00001c10       0x3a C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001c10                _ZN9HWSerial13getEv
+                0x00001c0a       0x3a C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001c0a                _ZN9HWSerial13getEv
  .text._ZN9HWSerial16putrxcEc
-                0x00001c4a       0x48 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001c4a                _ZN9HWSerial16putrxcEc
+                0x00001c44       0x48 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001c44                _ZN9HWSerial16putrxcEc
  .text._ZN9HWSerial16gettxcEv
-                0x00001c92       0x30 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001c92                _ZN9HWSerial16gettxcEv
+                0x00001c8c       0x30 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001c8c                _ZN9HWSerial16gettxcEv
  .text._ZN9HWSerial17PutCharEcb
-                0x00001cc2       0x84 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001cc2                _ZN9HWSerial17PutCharEcb
+                0x00001cbc       0x84 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001cbc                _ZN9HWSerial17PutCharEcb
  .text._ZN9HWSerial15beginEm
-                0x00001d46       0xb2 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001d46                _ZN9HWSerial15beginEm
+                0x00001d40       0xb2 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001d40                _ZN9HWSerial15beginEm
  .text.__vector_24
-                0x00001df8       0x6e C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001df8                __vector_24
+                0x00001df2       0x6e C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001df2                __vector_24
  .text.__vector_23
-                0x00001e66       0x82 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
-                0x00001e66                __vector_23
+                0x00001e60       0x82 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001e60                __vector_23
  .text.startup._GLOBAL__sub_I_Serial1
-                0x00001ee8       0x26 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
+                0x00001ee2       0x26 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
  .text.__vector_21
-                0x00001f0e       0xae C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
-                0x00001f0e                __vector_21
+                0x00001f08       0xae C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
+                0x00001f08                __vector_21
  .text._Z6millisv
-                0x00001fbc       0x18 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
-                0x00001fbc                _Z6millisv
+                0x00001fb6       0x18 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
+                0x00001fb6                _Z6millisv
  .text._Z6microsv
-                0x00001fd4       0x4c C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
-                0x00001fd4                _Z6microsv
+                0x00001fce       0x4c C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
+                0x00001fce                _Z6microsv
  .text._Z5delaym
-                0x00002020       0x50 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
-                0x00002020                _Z5delaym
+                0x0000201a       0x50 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
+                0x0000201a                _Z5delaym
  .text._Z9initTimerv
-                0x00002070       0x54 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
-                0x00002070                _Z9initTimerv
+                0x0000206a       0x54 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
+                0x0000206a                _Z9initTimerv
  .text._Z10TrackStackv
-                0x000020c4       0x20 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(StackChecker.o)
-                0x000020c4                _Z10TrackStackv
+                0x000020be       0x20 C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(StackChecker.o)
+                0x000020be                _Z10TrackStackv
  .text.libgcc.mul
-                0x000020e4       0x22 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_mulhi3.o)
-                0x000020e4                __mulhi3
+                0x000020de       0x22 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_mulhi3.o)
+                0x000020de                __mulhi3
  .text.libgcc.div
-                0x00002106       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodhi4.o)
-                0x00002106                __udivmodhi4
+                0x00002100       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodhi4.o)
+                0x00002100                __udivmodhi4
  .text.libgcc.div
-                0x0000212e       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodhi4.o)
-                0x0000212e                _div
-                0x0000212e                __divmodhi4
+                0x00002128       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodhi4.o)
+                0x00002128                _div
+                0x00002128                __divmodhi4
  .text.libgcc.div
-                0x00002154       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodsi4.o)
-                0x00002154                __udivmodsi4
+                0x0000214e       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodsi4.o)
+                0x0000214e                __udivmodsi4
  .text.libgcc.div
-                0x00002198       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o)
-                0x00002198                __divmodsi4
+                0x00002192       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o)
+                0x00002192                __divmodsi4
  .text.libgcc.div
-                0x000021c0       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_negsi2.o)
-                0x000021c0                __negsi2
+                0x000021ba       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_negsi2.o)
+                0x000021ba                __negsi2
  .text.libgcc.mul
-                0x000021d0       0x3a c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_mulsidi3.o)
-                0x000021d0                __mulsidi3
-                0x000021d4                __umulsidi3
+                0x000021ca       0x3a c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_mulsidi3.o)
+                0x000021ca                __mulsidi3
+                0x000021ce                __umulsidi3
  .text.libgcc.prologue
-                0x0000220a       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_prologue.o)
-                0x0000220a                __prologue_saves__
+                0x00002204       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_prologue.o)
+                0x00002204                __prologue_saves__
  .text.libgcc.prologue
-                0x00002242       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_epilogue.o)
-                0x00002242                __epilogue_restores__
- .text.libgcc   0x00002278        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_tablejump2.o)
-                0x00002278                __tablejump2__
+                0x0000223c       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_epilogue.o)
+                0x0000223c                __epilogue_restores__
+ .text.libgcc   0x00002272        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_tablejump2.o)
+                0x00002272                __tablejump2__
  .text.libgcc.mul
-                0x00002284       0x5c c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_muldi3.o)
-                0x00002284                __muldi3
+                0x0000227e       0x5c c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_muldi3.o)
+                0x0000227e                __muldi3
  .text.avr-libc
-                0x000022e0       0x9c c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(random.o)
-                0x00002362                random_r
-                0x00002364                random
-                0x0000236a                srandom
+                0x000022da       0x9c c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(random.o)
+                0x0000235c                random_r
+                0x0000235e                random
+                0x00002364                srandom
  .text.avr-libc
-                0x0000237c       0x3a c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(atoi.o)
-                0x0000237c                atoi
+                0x00002376       0x3a c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(atoi.o)
+                0x00002376                atoi
  .text.avr-libc
-                0x000023b6       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(isprint.o)
-                0x000023b6                isgraph
-                0x000023ba                isprint
+                0x000023b0       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(isprint.o)
+                0x000023b0                isgraph
+                0x000023b4                isprint
  .text.avr-libc
-                0x000023c6       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(isspace.o)
-                0x000023c6                isspace
+                0x000023c0       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(isspace.o)
+                0x000023c0                isspace
  .text.avr-libc
-                0x000023d6       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strcmp_P.o)
-                0x000023d6                strcmp_P
+                0x000023d0       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strcmp_P.o)
+                0x000023d0                strcmp_P
  .text.avr-libc
-                0x000023e8       0x34 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strstr_P.o)
-                0x000023e8                strstr_P
+                0x000023e2       0x34 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strstr_P.o)
+                0x000023e2                strstr_P
  .text.avr-libc
-                0x0000241c       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(memcpy.o)
-                0x0000241c                memcpy
+                0x00002416       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(memcpy.o)
+                0x00002416                memcpy
  .text.avr-libc
-                0x0000242e        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(memset.o)
-                0x0000242e                memset
+                0x00002428        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(memset.o)
+                0x00002428                memset
  .text.avr-libc
-                0x0000243c       0x16 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strchr.o)
-                0x0000243c                strchr
+                0x00002436       0x16 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(strchr.o)
+                0x00002436                strchr
  .text.avr-libc
-                0x00002452       0x14 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(mul10.o)
-                0x00002452                __mulhi_const_10
+                0x0000244c       0x14 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(mul10.o)
+                0x0000244c                __mulhi_const_10
  .text.avr-libc
-                0x00002466        0x6 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(cty_isfalse.o)
-                0x00002466                __ctype_isfalse
-                0x0000246a                __ctype_istrue
-                0x0000246c                . = ALIGN (0x2)
+                0x00002460        0x6 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(cty_isfalse.o)
+                0x00002460                __ctype_isfalse
+                0x00002464                __ctype_istrue
+                0x00002466                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000246c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_exit.o)
-                0x0000246c                _exit
-                0x0000246c                exit
+ .fini9         0x00002466        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_exit.o)
+                0x00002466                _exit
+                0x00002466                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -989,11 +989,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000246c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_exit.o)
+ .fini0         0x00002466        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002470                _etext = .
+                0x0000246a                _etext = .
 
-.data           0x00800100       0x12 load address 0x00002470
+.data           0x00800100       0x12 load address 0x0000246a
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(random.o)
@@ -1033,8 +1033,8 @@ END GROUP
                 0x00800305                timer0_overflow_count
  *(COMMON)
                 0x00800309                PROVIDE (__bss_end, .)
-                0x00002470                __data_load_start = LOADADDR (.data)
-                0x00002482                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000246a                __data_load_start = LOADADDR (.data)
+                0x0000247c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800309        0x2
                 0x00800309                PROVIDE (__noinit_start, .)
@@ -1345,7 +1345,6 @@ __divmodhi4                                       c:/winavr-20100110/bin/../lib/
 __divmodsi4                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o)
                                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr35\libc.a(random.o)
                                                   ./NeoPixels.o
-                                                  ./NeoPixelCandle.o
 __do_clear_bss                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_clear_bss.o)
                                                   C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Timer.o)
                                                   C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)
@@ -1386,7 +1385,6 @@ __udivmodhi4                                      c:/winavr-20100110/bin/../lib/
                                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodhi4.o)
                                                   ./NeoPixels.o
                                                   ./NeoPixelTheaterChase.o
-                                                  ./NeoPixelCandle.o
 __udivmodsi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_udivmodsi4.o)
                                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.9.2/avr35\libgcc.a(_divmodsi4.o)
                                                   C:\siriusxm\data\workspaces\playing\AtmelLibrary\Debug\libAtmelLibrary.a(Serial.o)

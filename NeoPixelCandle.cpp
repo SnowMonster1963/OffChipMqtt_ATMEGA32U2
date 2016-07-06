@@ -17,6 +17,7 @@
 #include "USBStream.h"
 
 #define CANDLE_FLICKER_RATE m_cfg.m_sustain
+#define CANDLE_RESOLUTION 32
 
 void NeoPixels::initCandle()
 	{
@@ -32,12 +33,12 @@ void NeoPixels::CandleEffect()
 			{
 			for(size_t i=0;i<m_cfg.m_pixels;i++)
 				{
-					unsigned int scale = random() % 24;
-					if(scale > 12)
+					unsigned int scale = random() % CANDLE_RESOLUTION;
+					if(scale > (CANDLE_RESOLUTION/2))
 						scale = 255;
 					else
 						{
-							scale = scale * 256 / 12;
+							scale = scale * 256 / (CANDLE_RESOLUTION/2);
 							if(scale > 255)
 								scale = 255;
 						}
