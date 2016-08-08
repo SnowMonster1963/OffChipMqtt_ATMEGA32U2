@@ -90,7 +90,7 @@ private:
 	flagreg m_flags;
 	char *cmdbuf;
 	size_t cmdbuflen;
-	char localbuf[64];
+	char localbuf[128];
 	size_t cmd_idx;
 
 	// data to buffer

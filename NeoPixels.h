@@ -31,13 +31,13 @@ void sendPixel(unsigned char r, unsigned char g, unsigned char b);
 
 enum NeoPixelEffect
 	{
-	effectOff, effectAllOn, effectTwinkle, effectTheaterChase, effectPattern, effectRainbow, effectCandle,
+	effectOff, effectAllOn, effectTwinkle, effectTheaterChase, effectRainbow, effectCandle,
 	effectMaxEffect
 	};
 
 enum NeoPixelColorMode
 	{
-	colorModeSingle, colorModeDual,  colorModePattern, colorModeRandom,
+	colorModeSingle, colorModePattern, colorModeRandom,
 	};
 
 enum NeoPixelStrandMode
@@ -54,6 +54,7 @@ enum NeoColorOrder
 	{
 	RGB, GRB
 	};
+
 class NeoPixelColor
 	{
 	byte colors[3];
@@ -79,6 +80,8 @@ public:
 
 	};
 
+#define PALETTE_SIZE 16
+
 class NeoConfig
 	{
 public:
@@ -95,7 +98,7 @@ public:
 	NeoPixelStrandMode m_strandmode;
 	byte m_density;
 	byte m_pattern_size;
-	NeoPixelColor m_pattern[10];
+	NeoPixelColor m_pattern[PALETTE_SIZE];
 
 	NeoConfig();
 
@@ -110,15 +113,22 @@ private:
 	NeoPixelColor m_arry[PIXELS];
 	byte m_status_bits[(PIXELS / 4) + 1];
 	byte m_tmrs[PIXELS];
+	byte m_palette[PIXELS * 8 / PALETTE_SIZE];
 	size_t m_lit;
 	size_t m_active;
 
 	void Update();
 
 	void init();
-	void TheaterChaseEffect();
-	void initTheaterChase();
+
+	void initAllOn();
+	void AllOnEffect();
+
 	void initTwinkle();
+	void TwinkleEffect();
+
+	void initTheaterChase();
+	void TheaterChaseEffect();
 
 	void initRainbow();
 	void RainbowEffect();
@@ -126,10 +136,12 @@ private:
 	void initCandle();
 	void CandleEffect();
 
-	void TwinkleSingleEffect();
-
 	void SetPixelState(size_t idx,NeoPixelState state);
 	NeoPixelState GetPixelState(size_t idx);
+
+	void SetPalette(size_t idx,byte v);
+	byte GetPalette(size_t idx);
+
 	void StartRandomPixel(size_t pixels=1);
 
 public:

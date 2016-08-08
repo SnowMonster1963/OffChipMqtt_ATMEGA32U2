@@ -376,37 +376,29 @@ void MyMqtt::OnTopic(char *topic, char *payload)
 		uint16_t v;
 		char *p = payload;
 		m_flags.flags.update = 1;
-		if (strstr_P((char *) topic, PSTR("pcolor")) != NULL)
-			{
-				r = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				g = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				b = atoi(p) & 0xff;
-				m_cfg.m_pattern[0] = NeoPixelColor(r, g, b);
-			}
-		else if (strstr_P((char *) topic, PSTR("scolor")) != NULL)
-			{
-				r = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				g = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				b = atoi(p) & 0xff;
-				m_cfg.m_pattern[1] = NeoPixelColor(r, g, b);
-			}
-		else if (strstr_P((char *) topic, PSTR("tcolor")) != NULL)
-			{
-				r = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				g = atoi(p) & 0xff;
-				p = strchr(p, ',') + 1;
-				b = atoi(p) & 0xff;
-				m_cfg.m_pattern[2] = NeoPixelColor(r, g, b);
-			}
-		else if (strstr_P((char *) topic, PSTR("order")) != NULL)
+		if (strstr_P((char *) topic, PSTR("order")) != NULL)
 			{
 				v = atoi(p);
-				NeoPixelColor::m_color_order = (NeoColorOrder)v;
+				NeoColorOrder norder = (NeoColorOrder)v;
+				NeoColorOrder oorder = NeoPixelColor::m_color_order;
+				// since we are changing the RGB order, we have to convert current palette to new scheme
+				if(norder != oorder)	// same, nothing to change
+					{
+						for(size_t i=0;i<m_cfg.m_pattern_size;i++)
+							{
+								r = m_cfg.m_pattern[i].getRed();
+								g = m_cfg.m_pattern[i].getGreen();
+								b = m_cfg.m_pattern[i].getBlue();
+
+								NeoPixelColor::m_color_order = norder;
+								m_cfg.m_pattern[i].setRed(r);
+								m_cfg.m_pattern[i].setGreen(g);
+								m_cfg.m_pattern[i].setBlue(b);
+								NeoPixelColor::m_color_order = oorder;
+							}
+					}
+
+				NeoPixelColor::m_color_order = norder;
 			}
 		else if (strstr_P((char *) topic, PSTR("cmode")) != NULL)
 			{

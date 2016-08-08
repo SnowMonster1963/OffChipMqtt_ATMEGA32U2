@@ -39,20 +39,6 @@
 
 #define NS_TO_CYCLES(n) ( (n) / NS_PER_CYCLE )
 
-#define RANDOMNESS 50
-byte RandomOffset(uint16_t v)
-	{
-		if(v > (255 - RANDOMNESS))
-			v = 255 - RANDOMNESS;
-
-		uint16_t x = random() % (2 * RANDOMNESS);
-		if(x > RANDOMNESS)
-			v -= x - RANDOMNESS;
-		else
-			v += x;
-		return (byte)v;
-	}
-
 
 // Actually send a bit to the string. We must to drop to asm to enusre that the complier does
 // not reorder things and make it so the delay happens in the wrong place.
@@ -170,9 +156,8 @@ void sendPixel(unsigned char r, unsigned char g, unsigned char b)
 	}
 
 //static __inline__
-void sendPixel(NeoPixelColor &c)
+void sendPixelRGB(NeoPixelColor &c)
 	{
-
 		sendByte(c.getGreen()); // Neopixel wants colors in green then red then blue order
 		if (tbi(UCSR1A,RXC1))
 			return;
@@ -183,14 +168,39 @@ void sendPixel(NeoPixelColor &c)
 
 	}
 
+void sendPixelGBR(NeoPixelColor &c)
+	{
+		sendByte(c.getRed());
+		if (tbi(UCSR1A,RXC1))
+			return;
+		sendByte(c.getGreen()); // Neopixel wants colors in green then red then blue order
+		if (tbi(UCSR1A,RXC1))
+			return;
+		sendByte(c.getBlue());
+
+	}
+
 void sendPixels(NeoPixelColor *px,size_t len)
 	{
-		InterruptBlocker ib;
-		for(size_t i = 0;i<len;i++)
+		if(NeoPixelColor::m_color_order == RGB)
 			{
-				sendPixel(px[i]);
-				if (tbi(UCSR1A,RXC1))
-					return;
+			InterruptBlocker ib;
+			for(size_t i = 0;i<len;i++)
+				{
+					sendPixelRGB(px[i]);
+					if (tbi(UCSR1A,RXC1))
+						return;
+				}
+			}
+		if(NeoPixelColor::m_color_order == GRB)
+			{
+			InterruptBlocker ib;
+			for(size_t i = 0;i<len;i++)
+				{
+					sendPixelGBR(px[i]);
+					if (tbi(UCSR1A,RXC1))
+						return;
+				}
 			}
 	}
 
@@ -370,199 +380,6 @@ static __inline__ byte randomize()
 		return c;          //low order bits of other variables
 	}
 
-void TwinkleStrandSingle(size_t pixels, NeoPixelColor&pc, byte density)
-	{
-		unsigned long l = pixels;
-		l *= density;
-		l /= 100;
-		size_t i, litpixelcnt = (size_t) l;
-		byte bits[(pixels / 8) + 1];
-		memset(bits, 0, sizeof(bits));
-		if(density > 0)
-			{
-			size_t ppd = (100/density) + 2;
-
-			// spread out randomness evenly over strand, if possible
-			i = 0;
-			while(i < pixels && litpixelcnt > 0)
-				{
-					size_t x = random() % ppd;
-					size_t bidx = i + x;
-					bits[bidx / 8] |= 1 << (bidx % 8);
-					litpixelcnt--;
-					i += ppd;
-				}
-			}
-
-		// get last few stragglers
-		for (i = 0; i < litpixelcnt; i++)
-			{
-				size_t x;
-				bool b = true;
-				while (b)
-					{
-						x = random() % pixels;
-						b = bits[x / 8] & (1 << (x % 8));
-						bits[x / 8] |= 1 << (x % 8);
-					}
-			}
-
-		InterruptBlocker ib;
-		NeoPixelColor nc;
-
-		for (i = 0; i < sizeof(bits); i++)
-			{
-				byte bt = 1;
-				byte x = bits[i];
-				byte rnd = randomize();
-				for (byte y = 0; y < 8; y++)
-					{
-						if (x & bt)
-							{
-								sendPixel(pc);
-							}
-						else
-							sendPixel(0, 0, 0);
-						bt <<= 1;
-						if (tbi(UCSR1A,RXC1))
-							return;
-					}
-
-			}
-
-	}
-
-void TwinkleStrandDual(size_t pixels, NeoPixelColor&pc, NeoPixelColor &sc, byte density)
-	{
-		unsigned long l = pixels;
-		l *= density;
-		l /= 100;
-		size_t i, litpixelcnt = (size_t) l;
-		byte bits[(pixels / 8) + 1];
-		memset(bits, 0, sizeof(bits));
-
-		for (i = 0; i < litpixelcnt; i++)
-			{
-				size_t x;
-				bool b = true;
-				while (b)
-					{
-						x = randomize() % pixels;
-						b = bits[x / 8] & (1 << (x % 8));
-						bits[x / 8] |= 1 << (x % 8);
-					}
-			}
-
-		InterruptBlocker ib;
-		NeoPixelColor nc;
-
-		for (i = 0; i < sizeof(bits); i++)
-			{
-				byte bt = 1;
-				byte x = bits[i];
-				byte rnd = randomize();
-				for (byte y = 0; y < 8; y++)
-					{
-						if (x & bt)
-							{
-								if (rnd & bt)
-									nc = pc;
-								else
-									nc = sc;
-								sendPixel(nc);
-							}
-						else
-							sendPixel(0, 0, 0);
-						bt <<= 1;
-						if (tbi(UCSR1A,RXC1))
-							return;
-					}
-
-			}
-
-	}
-
-void TwinkleStrandRandom(size_t pixels, byte density)
-	{
-		NeoPixelColor pixelcolors[8];
-		unsigned long l = pixels;
-		l *= density;
-		l /= 100;
-		size_t i, litpixelcnt = (size_t) l;
-		byte bits[(pixels / 8) + 1];
-		memset(bits, 0, sizeof(bits));
-		for (i = 0; i < ELEMENTS(pixelcolors) ; i++)
-			{
-				byte n = i;          // + 1;
-				byte r, g, b;
-				while (n == 0)
-					n = randomize() & 7;
-
-				r = (n & 4) > 0 ? 255 : 0;
-				g = (n & 2) > 0 ? 255 : 0;
-				b = (n & 1) > 0 ? 255 : 0;
-				pixelcolors[i] = NeoPixelColor(r, g, b);
-			}
-
-		for (i = 0; i < litpixelcnt; i++)
-			{
-				size_t x;
-				bool b = true;
-				while (b)
-					{
-						x = randomize() % pixels;
-						b = bits[x / 8] & (1 << (x % 8));
-						bits[x / 8] |= 1 << (x % 8);
-					}
-			}
-
-		l = random();
-
-		InterruptBlocker ib;
-		NeoPixelColor nc;
-
-		for (i = 0; i < sizeof(bits); i++)
-			{
-				byte bt = 1;
-				byte x = bits[i];
-				unsigned long lidx = l;
-				for (byte y = 0; y < 8; y++)
-					{
-						byte idx = lidx & 7;
-						lidx >>= 3;
-						if (x & bt)
-							{
-								sendPixel(pixelcolors[idx]);
-							}
-						else
-							sendPixel(0, 0, 0);
-						bt <<= 1;
-						if (tbi(UCSR1A,RXC1))
-							return;
-					}
-			}
-
-	}
-
-void TwinkleStrand(size_t pixels, NeoPixelColor &pc, NeoPixelColor &sc, NeoPixelColorMode cm, byte density)
-	{
-		if (density == 100)
-			return;
-
-		switch (cm)
-			{
-		case colorModeSingle:
-			TwinkleStrandSingle(pixels, pc, density);
-			break;
-		case colorModeDual:
-			TwinkleStrandDual(pixels, pc, sc, density);
-			break;
-		case colorModeRandom:
-			TwinkleStrandRandom(pixels, density);
-			break;
-			}
-
-	}
 
 ////////////////// NeoPixels Class ////////////////////////
 NeoPixels::NeoPixels(size_t pixels)
@@ -596,19 +413,8 @@ void NeoPixels::init()
 			initTheaterChase();
 			break;
 		case effectAllOn:
-			fillPixels(m_cfg.m_pattern[0]);
-			m_tmrs[1] = 1;
+			initAllOn();
 			break;
-		case effectPattern:
-			memset(m_arry,0,sizeof(m_arry));
-			for(uint16_t i=0;i<m_cfg.m_pixels;i++)
-				{
-					uint16_t x = i % m_cfg.m_pattern_size;
-					m_arry[i] = m_cfg.m_pattern[x];
-				}
-			m_tmrs[1] = 1;
-			break;
-
 		case effectRainbow:
 			initRainbow();
 			break;
@@ -649,29 +455,6 @@ void NeoPixels::StartRandomPixel(size_t pixels)
 
 	}
 
-void NeoPixels::initTwinkle()
-	{
-		memset(m_arry,0,sizeof(m_arry));
-		memset(m_status_bits,0,sizeof(m_status_bits));
-
-		for(size_t i=0;i<m_cfg.m_pixels;i++)
-			m_tmrs[i] = RandomOffset(m_cfg.m_off);
-
-		m_lit = m_cfg.m_pixels * m_cfg.m_density / 100;
-		m_active = 0;
-		size_t x = m_lit;
-		while(x > 0)
-			{
-				size_t idx = random() % m_cfg.m_pixels;
-				if(m_tmrs[idx] != 0)
-					{
-						m_tmrs[idx] = 0;
-						x--;
-					}
-			}
-		sendPixels(m_arry,PIXELS);
-	}
-
 
 void NeoPixels::SetPixelState(size_t idx,NeoPixelState state)
 	{
@@ -693,78 +476,6 @@ NeoPixelState NeoPixels::GetPixelState(size_t idx)
 		return ret;
 	}
 
-void NeoPixels::TwinkleSingleEffect()
-	{
-		size_t idx;
-		for(idx = 0;idx < m_cfg.m_pixels;idx++)
-			{
-				NeoPixelState ps = GetPixelState(idx);
-				if(m_tmrs[idx] == 0)
-					{
-						switch(ps)
-							{
-						case TurnedOff:
-							if(m_active > 0)
-								m_active--;
-							break;
-						case Attacking:
-							m_arry[idx] = m_cfg.m_pattern[0];
-							SetPixelState(idx,Sustaining);
-							//m_tmrs[idx] = RandomOffset(m_sustain);
-							m_tmrs[idx] = (byte) m_cfg.m_sustain > 255 ? 255 : m_cfg.m_sustain;
-							break;
-						case Sustaining:
-							SetPixelState(idx,Decaying);
-							m_tmrs[idx] = (byte) m_cfg.m_decay > 255 ? 255 : m_cfg.m_decay;
-							break;
-						case Decaying:
-							SetPixelState(idx,TurnedOff);
-							m_arry[idx] = NeoPixelColor(0,0,0);
-							m_tmrs[idx] = RandomOffset(m_cfg.m_off);//(byte) m_off > 255 ? 255 : m_off;
-							break;
-							}
-					}
-				else
-					{
-						m_tmrs[idx]--;
-						size_t x;
-						switch(ps)
-							{
-						case TurnedOff:
-							break;
-						case Attacking:
-							if(m_cfg.m_attack > 0)
-								{
-								x = 256 / m_cfg.m_attack;
-								x *= m_cfg.m_attack - m_tmrs[idx];
-								if(x > 255)
-									x = 255;
-								//m_arry[idx] = NeoPixelColor(255,0,0) * (byte)(x);
-								m_arry[idx] = m_cfg.m_pattern[0] * (byte)(x);
-								}
-							break;
-						case Sustaining:
-							m_arry[idx] = m_cfg.m_pattern[0];
-							break;
-						case Decaying:
-							if(m_cfg.m_decay > 0)
-								{
-								x = 256 / m_cfg.m_decay;
-								x *= m_cfg.m_decay - m_tmrs[idx];
-								x = 256 - x;
-								if(x > 255)
-									x = 255;
-								//m_arry[idx] = NeoPixelColor(0,255,0) * (byte)(x);
-								m_arry[idx] = m_cfg.m_pattern[0] * (byte)(x);
-								}
-							break;
-							}
-					}
-			}
-		if(m_active < m_lit)
-			StartRandomPixel(m_lit - m_active);
-		sendPixels(m_arry,m_cfg.m_pixels);
-	}
 
 void NeoPixels::Update()
 	{
@@ -775,7 +486,7 @@ void NeoPixels::Update()
 			CandleEffect();
 			break;
 		case effectTwinkle:
-			TwinkleSingleEffect();
+			TwinkleEffect();
 			break;
 		case effectTheaterChase:
 			TheaterChaseEffect();
@@ -784,16 +495,11 @@ void NeoPixels::Update()
 			RainbowEffect();
 			break;
 		case effectAllOn:
-		case effectPattern:
-			if(m_tmrs[1])
-				{
-				sendPixels(m_arry,PIXELS);
-				m_tmrs[1] = 0;
-				}
+			AllOnEffect();
 			break;
 		case effectOff:
 		default:
-			//if(m_tmrs[1])
+			if(m_tmrs[1])
 				{
 				memset(m_arry,0,sizeof(m_arry));
 				sendPixels(m_arry,PIXELS);
@@ -837,130 +543,5 @@ void NeoPixels::SetConfig(NeoConfig &cfg)
 	{
 		m_cfg = cfg;
 		init();
-	}
-
-NeoColorOrder NeoPixelColor::m_color_order = RGB;
-
-byte NeoPixelColor::getRed()
-	{
-		switch(m_color_order)
-			{
-		case GRB:
-			return colors[1];
-			break;
-		case RGB:
-		default:
-			return colors[0];
-			}
-	}
-
-byte NeoPixelColor::getGreen()
-	{
-		switch(m_color_order)
-			{
-		case GRB:
-			return colors[0];
-			break;
-		case RGB:
-		default:
-			return colors[1];
-			}
-	}
-
-
-byte NeoPixelColor::getBlue()
-	{
-		return colors[2];
-	}
-
-
-
-void NeoPixelColor::setRed(byte v)
-	{
-		switch(m_color_order)
-			{
-		case GRB:
-			colors[1] = v;
-			break;
-		case RGB:
-		default:
-			colors[0] = v;
-			}
-	}
-
-void NeoPixelColor::setGreen(byte v)
-	{
-		switch(m_color_order)
-			{
-		case GRB:
-			colors[0] = v;
-			break;
-		case RGB:
-		default:
-			colors[1] = v;
-			}
-	}
-
-
-void NeoPixelColor::setBlue(byte v)
-	{
-		colors[2] = v;
-	}
-
-
-NeoPixelColor::NeoPixelColor()
-	{
-		setRed(0);
-		setGreen(0);
-		setBlue(0);
-	}
-
-NeoPixelColor::NeoPixelColor(byte r, byte g, byte b)
-	{
-		setRed(r);
-		setGreen(g);
-		setBlue(b);
-	}
-
-NeoPixelColor::NeoPixelColor(const NeoPixelColor &r)
-	{
-		setRed(r.getRed());
-		setGreen(r.getGreen());
-		setBlue(r.getBlue());
-	}
-
-NeoPixelColor & NeoPixelColor::operator=(const NeoPixelColor &r)
-	{
-		setRed(r.getRed());
-		setGreen(r.getGreen());
-		setBlue(r.getBlue());
-		return *this;
-	}
-
-NeoPixelColor NeoPixelColor::operator *(byte b)
-	{
-		NeoPixelColor ret = *this;
-		unsigned int x = ret.getRed();
-		x *= b;
-		x /= 255;
-		if(x > 255)
-			x = 255;
-		ret.setRed(x);
-
-		x = ret.getGreen();
-		x *= b;
-		x /= 255;
-		if(x > 255)
-			x = 255;
-		ret.setGreen(x);
-
-		x = ret.getBlue();
-		x *= b;
-		x /= 255;
-		if(x > 255)
-			x = 255;
-		ret.setBlue(x);
-
-		return ret;
 	}
 

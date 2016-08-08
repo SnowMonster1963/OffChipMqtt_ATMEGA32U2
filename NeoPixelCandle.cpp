@@ -42,7 +42,7 @@ void NeoPixels::CandleEffect()
 							if(scale > 255)
 								scale = 255;
 						}
-					m_arry[i] = m_cfg.m_pattern[0] * (byte)(scale);
+					m_arry[i] = m_cfg.m_pattern[i%m_cfg.m_pattern_size] * (byte)(scale);
 				}
 			sendPixels(m_arry,m_cfg.m_pixels);
 			m_tmrs[0] = CANDLE_FLICKER_RATE;

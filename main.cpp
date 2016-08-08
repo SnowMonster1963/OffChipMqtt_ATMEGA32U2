@@ -108,7 +108,7 @@ void PixelTest(byte pixels)
 		mqttsock.SetBuffer(NULL,0);
 
 		neo.begin();
-		while (mqttsock.IsConnected() == true)
+		while(1)
 			{
 				mqttsock.MqttTasks();
 				mqttsock.CheckUpdate();
